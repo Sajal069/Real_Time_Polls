@@ -21,13 +21,13 @@ def create_app() -> Flask:
 
     CORS(
         app,
-        resources={r"/api/*": {"origins": app.config["CORS_ORIGINS"]}},
+        resources={r"/*": {"origins": app.config.get("CORS_ORIGINS", "*")}},
         supports_credentials=True,
     )
 
     socketio.init_app(
         app,
-        cors_allowed_origins=app.config["CORS_ORIGINS"],
+        cors_allowed_origins=app.config.get("CORS_ORIGINS", "*"),
         manage_session=False,
     )
 
