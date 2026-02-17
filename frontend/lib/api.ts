@@ -1,12 +1,14 @@
 import * as Types from "@/lib/types";
 
+
 const DEFAULT_API_URL = "http://localhost:5000";
 
 export const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL?.replace(/\/$/, "") ?? DEFAULT_API_URL;
+  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") ?? DEFAULT_API_URL;
+
 
 export const SOCKET_URL =
-  process.env.NEXT_PUBLIC_SOCKET_URL?.replace(/\/$/, "") ?? API_BASE_URL;
+  process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "") ?? DEFAULT_API_URL;
 
 async function parseResponse<T>(response: Response): Promise<T> {
   const payload = await response.json().catch(() => ({}));
